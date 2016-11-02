@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 source 'https://rubygems.org'
 
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
@@ -9,6 +10,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'rubocop', '~> 0.45.0'
   gem 'listen', '~> 3.0.5'
   gem 'spring', '~> 2.0'
   gem 'spring-watcher-listen', '~> 2.0.0'
