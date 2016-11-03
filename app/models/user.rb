@@ -3,22 +3,20 @@
 #
 # Table name: users
 #
-#  id              :integer          not null, primary key
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  firstname       :string
-#  lastname        :string
-#  email           :string
-#  password_digest :string
-#  token           :string
-#  settings        :jsonb            not null
+#  id                     :integer          not null, primary key
+#  email                  :string           default(""), not null
+#  encrypted_password     :string           default(""), not null
+#  reset_password_token   :string
+#  reset_password_sent_at :datetime
+#  is_admin               :boolean
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  settings               :jsonb            not null
 #
 
 class User < ApplicationRecord
+  devise :database_authenticatable, :registerable, :recoverable, :validatable
   include Storext.model
-
-  has_secure_token
-  has_secure_password
 
   validates :email, presence: true
 

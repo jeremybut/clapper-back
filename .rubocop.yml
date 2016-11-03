@@ -1,3 +1,5 @@
+require: rubocop-rspec
+
 Rails:
   Enabled: true
 Documentation:
@@ -23,12 +25,10 @@ AllCops:
   Exclude:
     - db/schema.rb
     - 'vendor/**/*'
-    - 'test/**/*'
     - 'db/migrate/**/*'
     - 'config/**/*'
     - 'log/**/*'
     - 'public/**/*'
-    - 'spec/**/*'
     - 'bin/**/*'
     - 'lib/templates/**/*'
 
@@ -42,3 +42,7 @@ Style/CaseIndentation:
   Description: 'Indentation of when in a case/when/[else/]end.'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#indent-when-to-case'
   Enabled: true
+
+RSpec/FilePath:
+  Include:
+    - 'spec/**/*'

@@ -43,6 +43,7 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+    addressable (2.4.0)
     annotate (2.7.1)
       activerecord (>= 3.2, < 6.0)
       rake (>= 10.4, < 12.0)
@@ -53,13 +54,31 @@ GEM
       ice_nine (~> 0.11.0)
       thread_safe (~> 0.3, >= 0.3.1)
     bcrypt (3.1.11)
+    better_errors (2.1.1)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+      rack (>= 0.9.0)
     builder (3.2.2)
+    cancancan (1.15.0)
+    coderay (1.1.1)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
     concurrent-ruby (1.0.2)
+    crack (0.4.3)
+      safe_yaml (~> 1.0.0)
+    database_rewinder (0.6.5)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
+    devise (4.2.0)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 4.1.0, < 5.1)
+      responders
+      warden (~> 1.2.3)
     diff-lcs (1.2.5)
+    docile (1.1.5)
+    doorkeeper (4.2.0)
+      railties (>= 4.2)
     equalizer (0.0.11)
     erubis (2.7.0)
     factory_girl (4.7.0)
@@ -70,8 +89,13 @@ GEM
     ffi (1.9.14)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
+    hashdiff (0.3.0)
     i18n (0.7.0)
     ice_nine (0.11.2)
+    json (2.0.2)
+    json_spec (1.1.4)
+      multi_json (~> 1.0)
+      rspec (>= 2.0, < 4.0)
     jsonapi (0.1.1.beta6)
       jsonapi-parser (= 0.1.1.beta3)
       jsonapi-renderer (= 0.1.1.beta1)
@@ -90,9 +114,11 @@ GEM
     mime-types-data (3.2016.0521)
     mini_portile2 (2.1.0)
     minitest (5.9.1)
+    multi_json (1.12.1)
     nio4r (1.2.1)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
+    orm_adapter (0.5.0)
     parser (2.3.1.4)
       ast (~> 2.2)
     pg (0.19.0)
@@ -129,6 +155,12 @@ GEM
     rb-fsevent (0.9.8)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
+    responders (2.3.0)
+      railties (>= 4.2.0, < 5.1)
+    rspec (3.5.0)
+      rspec-core (~> 3.5.0)
+      rspec-expectations (~> 3.5.0)
+      rspec-mocks (~> 3.5.0)
     rspec-core (3.5.4)
       rspec-support (~> 3.5.0)
     rspec-expectations (3.5.0)
@@ -152,7 +184,17 @@ GEM
       rainbow (>= 1.99.1, < 3.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
+    rubocop-rspec (1.7.0)
+      rubocop (>= 0.42.0)
     ruby-progressbar (1.8.1)
+    safe_yaml (1.0.4)
+    shoulda-matchers (3.1.1)
+      activesupport (>= 4.0.0)
+    simplecov (0.12.0)
+      docile (~> 1.1.0)
+      json (>= 1.8, < 3)
+      simplecov-html (~> 0.10.0)
+    simplecov-html (0.10.0)
     spring (2.0.0)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -170,14 +212,22 @@ GEM
       virtus
     thor (0.19.1)
     thread_safe (0.3.5)
+    timecop (0.8.1)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     unicode-display_width (1.1.1)
+    vcr (3.0.3)
     virtus (1.0.5)
       axiom-types (~> 0.1)
       coercible (~> 1.0)
       descendants_tracker (~> 0.0, >= 0.0.3)
       equalizer (~> 0.0, >= 0.0.9)
+    warden (1.2.6)
+      rack (>= 1.0)
+    webmock (2.1.0)
+      addressable (>= 2.3.6)
+      crack (>= 0.3.2)
+      hashdiff
     websocket-driver (0.6.4)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
@@ -187,18 +237,30 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers (~> 0.10.2)
-  annotate (~> 2.7, >= 2.7.1)
+  annotate
   bcrypt (~> 3.1, >= 3.1.11)
-  factory_girl_rails (~> 4.7)
-  listen (~> 3.0.5)
+  better_errors
+  cancancan (~> 1.15)
+  database_rewinder
+  devise (~> 4.2)
+  doorkeeper (~> 4.2)
+  factory_girl_rails
+  json_spec
+  listen
   pg (~> 0.19.0)
   puma (~> 3.6)
   rails (~> 5.0.0, >= 5.0.0.1)
-  rspec-rails (~> 3.5, >= 3.5.2)
-  rubocop (~> 0.45.0)
-  spring (~> 2.0)
-  spring-watcher-listen (~> 2.0.0)
+  rspec-rails
+  rubocop
+  rubocop-rspec
+  shoulda-matchers
+  simplecov
+  spring
+  spring-watcher-listen
   storext (~> 2.2, >= 2.2.1)
+  timecop
+  vcr
+  webmock
 
 BUNDLED WITH
    1.13.1

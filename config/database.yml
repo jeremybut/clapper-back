@@ -1,5 +1,12 @@
-development:
+default: &default
   adapter: postgresql
   encoding: unicode
-  database: kovies_dev
   pool: 5
+
+development:
+  <<: *default
+  database: kovies_dev
+
+test:
+  <<: *default
+  database: kovies_test

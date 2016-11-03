@@ -1,19 +1,23 @@
 # frozen_string_literal: true
 class CreateUsers < ActiveRecord::Migration[5.0]
-  def up
+  def change
     create_table :users do |t|
-      t.timestamps
-      t.string     :firstname
-      t.string     :lastname
-      t.string     :email
-      t.string     :password_digest
-      t.string     :token
-    end
-    add_index :users, :token, unique: true
-  end
+      ## Database authenticatable
+      t.string :email,              null: false, default: ''
+      t.string :encrypted_password, null: false, default: ''
 
-  def down
-    drop_table :users
-    remove_index(:users, name: 'token')
+      ## Recoverable
+      t.string   :reset_password_token
+      t.datetime :reset_password_sent_at
+
+      t.boolean :is_admin
+
+      t.timestamps null: false
+    end
+
+    add_index :users, :email,                unique: true
+    add_index :users, :reset_password_token, unique: true
+    # add_index :users, :confirmation_token,   unique: true
+    # add_index :users, :unlock_token,         unique: true
   end
 end

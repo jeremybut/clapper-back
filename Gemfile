@@ -6,18 +6,32 @@ gem 'pg', '~> 0.19.0'
 gem 'puma', '~> 3.6'
 gem 'active_model_serializers', '~> 0.10.2'
 gem 'storext', '~> 2.2', '>= 2.2.1'
+gem 'devise', '~> 4.2'
+gem 'doorkeeper', '~> 4.2'
+
+# Abilities
+gem 'cancancan', '~> 1.15'
 
 group :development do
-  gem 'rubocop', '~> 0.45.0'
-  gem 'listen', '~> 3.0.5'
-  gem 'spring', '~> 2.0'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'rubocop'
+  gem 'rubocop-rspec'
+  gem 'listen'
+  gem 'spring'
+  gem 'spring-watcher-listen'
+  gem 'better_errors'
+  gem 'annotate'
 end
 
-group :development, :test do
-  gem 'rspec-rails', '~> 3.5', '>= 3.5.2'
-  gem 'factory_girl_rails', '~> 4.7'
-  gem 'annotate', '~> 2.7', '>= 2.7.1'
+group :test do
+  gem 'database_rewinder'
+  gem 'rspec-rails'
+  gem 'shoulda-matchers'
+  gem 'factory_girl_rails'
+  gem 'json_spec'
+  gem 'vcr'
+  gem 'webmock', require: 'webmock/rspec'
+  gem 'timecop'
+  gem 'simplecov', require: false
 end
 
 gem 'bcrypt', '~> 3.1', '>= 3.1.11'
