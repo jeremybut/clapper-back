@@ -1,17 +1,26 @@
 # frozen_string_literal: true
 source 'https://rubygems.org'
 
+# Core
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 gem 'pg', '~> 0.19.0'
 gem 'puma', '~> 3.6'
-gem 'active_model_serializers', '~> 0.10.2'
-gem 'storext', '~> 2.2', '>= 2.2.1'
+
+# Auth
 gem 'devise', '~> 4.2'
+
+# Api
+gem 'active_model_serializers', '~> 0.10.2'
 gem 'doorkeeper', '~> 4.2'
+gem 'storext', '~> 2.2', '>= 2.2.1'
 
 # Abilities
 gem 'cancancan', '~> 1.15'
 
+# Files
+gem 'paperclip', '~> 5.1'
+
+# Dev
 group :development do
   gem 'rubocop'
   gem 'rubocop-rspec'
@@ -22,6 +31,7 @@ group :development do
   gem 'annotate'
 end
 
+# Test
 group :test do
   gem 'database_rewinder'
   gem 'rspec-rails'
