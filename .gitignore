@@ -27,3 +27,10 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Front #
+######################
+client/node_modules
+client/.sass-cache
+client/dist
+client/bower_components

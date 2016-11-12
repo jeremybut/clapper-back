@@ -5,8 +5,17 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :users, only: [:index, :update]
       post :signup, to: 'signup#index'
+
+      # Movies
+      resources :movies, only: [:index, :show]
+
+      # Users
+      resources :users, only: [:index, :update] do
+        collection do
+          get '/me', to: 'users#me'
+        end
+      end
     end
   end
 

@@ -17,7 +17,20 @@ Bundler.require(*Rails.groups)
 
 module Kovies
   class Application < Rails::Application
+    ActiveModelSerializers.config.adapter = :json
+
     config.api_only = true
     Rails.application.routes.default_url_options[:host] = ENV['HOST']
+
+    config.middleware.insert_before 'Rack::Runtime', 'Rack::Cors' do
+      allow do
+        origins '*'
+        resource '*', headers: :any, methods: [
+          :get, :put, :post, :patch, :delete, :options
+        ]
+      end
+    end
+
+    config.autoload_paths << "#{Rails.root}/lib"
   end
 end
