@@ -8,11 +8,13 @@ gem 'puma', '~> 3.6'
 
 # Auth
 gem 'devise', '~> 4.2'
+gem 'rolify', '~> 5.1'
 
 # Api
 gem 'active_model_serializers', '~> 0.10.2'
 gem 'doorkeeper', '~> 4.2'
 gem 'storext', '~> 2.2', '>= 2.2.1'
+gem 'rack-cors', require: 'rack/cors'
 
 # Abilities
 gem 'cancancan', '~> 1.15'
@@ -29,6 +31,9 @@ group :development do
   gem 'spring-watcher-listen'
   gem 'better_errors'
   gem 'annotate'
+  gem 'pry-rails'
+  gem 'pry-byebug'
+  gem 'faker'
 end
 
 # Test
