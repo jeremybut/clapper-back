@@ -10,8 +10,6 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at
 
-      t.boolean :is_admin
-
       t.timestamps null: false
     end
 

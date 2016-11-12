@@ -8,7 +8,6 @@
 #  encrypted_password     :string           default(""), not null
 #  reset_password_token   :string
 #  reset_password_sent_at :datetime
-#  is_admin               :boolean
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  settings               :jsonb            not null

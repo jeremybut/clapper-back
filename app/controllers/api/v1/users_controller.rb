@@ -20,6 +20,10 @@ module Api
         end
       end
 
+      def me
+        render json: current_user, status: 200
+      end
+
       private
 
       def update_params
