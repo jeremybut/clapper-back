@@ -21,6 +21,7 @@ gem 'cancancan', '~> 1.15'
 
 # Files
 gem 'paperclip', '~> 5.1'
+gem 'faker', '~> 1.6', '>= 1.6.6'
 
 # Dev
 group :development do
@@ -33,7 +34,6 @@ group :development do
   gem 'annotate'
   gem 'pry-rails'
   gem 'pry-byebug'
-  gem 'faker'
 end
 
 # Test
