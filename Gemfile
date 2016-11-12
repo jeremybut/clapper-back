@@ -50,3 +50,4 @@ group :test do
 end
 
 gem 'bcrypt', '~> 3.1', '>= 3.1.11'
+ruby '2.3.1'
