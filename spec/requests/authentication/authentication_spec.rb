@@ -25,7 +25,7 @@ describe 'Authentication', reqres_section: 'Login and Sign up' do
             expect(json['access_token'].size).to eq 64
             expect(json['refresh_token'].size).to eq 64
             expect(json['token_type']).to eq 'bearer'
-            expect(json['expires_in']).to eq 7200
+            expect(json['expires_in']).to eq 86400
             expect(json['created_at'].present?).to eq true
             expect(response.status).to eq 200
           end
@@ -56,7 +56,7 @@ describe 'Authentication', reqres_section: 'Login and Sign up' do
             expect(json['access_token'].size).to eq 64
             expect(json['refresh_token'].size).to eq 64
             expect(json['token_type']).to eq 'bearer'
-            expect(json['expires_in']).to eq 7200
+            expect(json['expires_in']).to eq 86400
             expect(json['created_at'].present?).to eq true
             expect(response.status).to eq 200
           end
@@ -83,35 +83,35 @@ describe 'Authentication', reqres_section: 'Login and Sign up' do
       end
     end
 
-    describe 'grant_type client_credentials',
-             reqres_title: 'Authenticate client application' do
-      context 'with valid params' do
-        let(:client_application) { create :client_application }
+    # describe 'grant_type client_credentials',
+    #          reqres_title: 'Authenticate client application' do
+    #   context 'with valid params' do
+    #     let(:client_application) { create :client_application }
 
-        it 'returns token' do
-          post(
-            '/oauth/token',
-            params: {
-              'grant_type' => 'client_credentials',
-              'client_id' => client_application.uid,
-              'client_secret' => client_application.secret
-            }
-          )
+    #     it 'returns token' do
+    #       post(
+    #         '/oauth/token',
+    #         params: {
+    #           'grant_type' => 'client_credentials',
+    #           'client_id' => client_application.uid,
+    #           'client_secret' => client_application.secret
+    #         }
+    #       )
 
-          expect(Doorkeeper::AccessToken.count).to eq 1
-          expect(
-            Doorkeeper::AccessToken.first.application_id
-          ).to eq client_application.id
+    #       expect(Doorkeeper::AccessToken.count).to eq 1
+    #       expect(
+    #         Doorkeeper::AccessToken.first.application_id
+    #       ).to eq client_application.id
 
-          expect(json['access_token'].size).to eq 64
-          expect(json['refresh_token']).to eq nil
-          expect(json['token_type']).to eq 'bearer'
-          expect(json['expires_in']).to eq 7200
-          expect(json['created_at'].present?).to eq true
-          expect(response.status).to eq 200
-        end
-      end
-    end
+    #       expect(json['access_token'].size).to eq 64
+    #       expect(json['refresh_token']).to eq nil
+    #       expect(json['token_type']).to eq 'bearer'
+    #       expect(json['expires_in']).to eq 86400
+    #       expect(json['created_at'].present?).to eq true
+    #       expect(response.status).to eq 200
+    #     end
+    #   end
+    # end
 
     describe 'grant_type refresh_token' do
       let(:user) do
@@ -144,7 +144,7 @@ describe 'Authentication', reqres_section: 'Login and Sign up' do
         expect(json['refresh_token'].size).to eq 64
         expect(json['refresh_token'].size).not_to eq refresh_token
         expect(json['token_type']).to eq 'bearer'
-        expect(json['expires_in']).to eq 7200
+        expect(json['expires_in']).to eq 86400
         expect(json['created_at'].present?).to eq true
         expect(response.status).to eq 200
       end

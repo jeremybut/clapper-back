@@ -13,6 +13,17 @@
 #  settings               :jsonb            not null
 #
 
-describe UserSerializer do
-  pending
-end
+# require 'rails_helper'
+
+# describe UserSerializer do
+#   let(:attributes) { FactoryGirl.attributes_for(resource_name) }
+
+#   it { should have_key(:id) }
+#   it { should have_key(:email) }
+#   it { should have_key(:db_name) }
+#   it { should have_key(:db_username) }
+#   it { should have_key(:db_password) }
+#   it { should have_key(:db_host) }
+#   it { should have_key(:db_port) }
+#   it { should have_key(:created_at) }
+# end

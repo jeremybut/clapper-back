@@ -11,7 +11,7 @@ FactoryGirl.define do
     db_port 3306
 
     factory :admin_user do
-      is_admin true
+      after(:create) { |user| user.add_role(:admin) }
     end
   end
 end
