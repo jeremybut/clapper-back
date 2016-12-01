@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       post :signup, to: 'signup#index'
 
       # Movies
-      resources :movies, only: [:index, :show]
+      resources :movies, only: :index
 
       # Users
       resources :users, only: [:index, :update] do
