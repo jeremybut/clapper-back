@@ -27,7 +27,10 @@ module Api
       private
 
       def update_params
-        params.permit(:email, :password)
+        params.require(:user).permit(
+          :email, :password, :kodi_username, :kodi_password, :kodi_host,
+          :kodi_port
+        )
       end
     end
   end

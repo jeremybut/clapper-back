@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+# app/controllers/api_controller.rb
 class ApiController < ActionController::API
   include CanCan::ControllerAdditions
 
@@ -32,14 +33,9 @@ class ApiController < ActionController::API
     User.find(doorkeeper_token.resource_owner_id) if doorkeeper_token
   end
 
-  def pagination_dict(object)
-    {
-      current_page: object.current_page,
-      next_page: object.next_page,
-      prev_page: object.prev_page,
-      total_pages: object.total_pages,
-      total_count: object.total_count
-    }
+  def kodi_client
+    uri = "#{current_user.kodi_host}:#{current_user.kodi_port}/jsonrpc"
+    KodiClient.new(uri)
   end
 
   def errors_json(messages)

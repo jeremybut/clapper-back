@@ -14,8 +14,8 @@
 #
 
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :email, :db_name, :db_username,
-             :db_password, :db_host, :db_port, :created_at
+  attributes :id, :email, :kodi_username, :kodi_password, :kodi_host,
+             :kodi_port, :created_at
 
   link(:self) { api_v1_user_url(object) }
 end
