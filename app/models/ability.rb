@@ -6,8 +6,10 @@ class Ability
     user ||= User.new
 
     if user.has_role? :admin
-      can :manage, :all
+      can :manage, :movie
+      can :manage, User
     else
+      can :manage, :movie
       can :manage, User, id: user.id
     end
   end

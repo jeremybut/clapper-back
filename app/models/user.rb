@@ -21,10 +21,9 @@ class User < ApplicationRecord
   validates :email, presence: true
 
   store_attributes :settings do
-    db_name String
-    db_username String
-    db_password String
-    db_host String
-    db_port Integer
+    kodi_username String
+    kodi_password String
+    kodi_host String
+    kodi_port Integer
   end
 end
