@@ -16,70 +16,6 @@ ActiveRecord::Schema.define(version: 20161110130937) do
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
 
-  create_table "actors", force: :cascade do |t|
-    t.string "fullname"
-  end
-
-  create_table "actors_movies", force: :cascade do |t|
-    t.integer "actors_id"
-    t.string  "media_type"
-    t.string  "role"
-    t.integer "cast_order"
-    t.index ["actors_id"], name: "index_actors_movies_on_actors_id", using: :btree
-  end
-
-  create_table "arts", force: :cascade do |t|
-    t.string   "imageable_type"
-    t.integer  "imageable_id"
-    t.string   "kind"
-    t.string   "picture_file_name"
-    t.string   "picture_content_type"
-    t.integer  "picture_file_size"
-    t.datetime "picture_updated_at"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-    t.index ["imageable_type", "imageable_id"], name: "index_arts_on_imageable_type_and_imageable_id", using: :btree
-  end
-
-  create_table "episodes", force: :cascade do |t|
-    t.integer "episode_number"
-    t.integer "seasons_id"
-    t.string  "title"
-    t.text    "synopsis"
-    t.integer "play_count"
-    t.string  "last_played"
-    t.string  "date_added"
-    t.integer "tv_shows_id"
-    t.string  "studio"
-    t.float   "resume_time_in_seconds"
-    t.float   "total_time_in_seconds"
-    t.index ["seasons_id"], name: "index_episodes_on_seasons_id", using: :btree
-    t.index ["tv_shows_id"], name: "index_episodes_on_tv_shows_id", using: :btree
-  end
-
-  create_table "genres", force: :cascade do |t|
-    t.string "name"
-  end
-
-  create_table "movies", force: :cascade do |t|
-    t.text    "short_synopsis"
-    t.text    "full_synopsis"
-    t.string  "subtitle"
-    t.integer "year"
-    t.integer "genres_id"
-    t.string  "director"
-    t.string  "title"
-    t.string  "studio"
-    t.string  "trailer_url"
-    t.string  "origin"
-    t.integer "play_count"
-    t.string  "last_played"
-    t.string  "date_added"
-    t.float   "resume_time_in_seconds"
-    t.float   "total_time_in_seconds"
-    t.index ["genres_id"], name: "index_movies_on_genres_id", using: :btree
-  end
-
   create_table "oauth_access_grants", force: :cascade do |t|
     t.integer  "resource_owner_id", null: false
     t.integer  "application_id",    null: false
@@ -125,30 +61,6 @@ ActiveRecord::Schema.define(version: 20161110130937) do
     t.datetime "updated_at"
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
     t.index ["name"], name: "index_roles_on_name", using: :btree
-  end
-
-  create_table "seasons", force: :cascade do |t|
-    t.integer "season_number"
-    t.integer "tv_shows_id"
-    t.text    "synopsis"
-    t.integer "genres_id"
-    t.string  "studio"
-    t.integer "number_of_episodes"
-    t.integer "play_count"
-    t.index ["genres_id"], name: "index_seasons_on_genres_id", using: :btree
-    t.index ["tv_shows_id"], name: "index_seasons_on_tv_shows_id", using: :btree
-  end
-
-  create_table "tv_shows", force: :cascade do |t|
-    t.string   "trailer_url"
-    t.string   "title"
-    t.text     "synopsis"
-    t.string   "studio"
-    t.datetime "last_played"
-    t.datetime "date_added"
-    t.integer  "total_count"
-    t.integer  "watched_count"
-    t.integer  "total_seasons"
   end
 
   create_table "users", force: :cascade do |t|
