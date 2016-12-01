@@ -16,12 +16,11 @@ gem 'doorkeeper', '~> 4.2'
 gem 'storext', '~> 2.2', '>= 2.2.1'
 gem 'rack-cors', require: 'rack/cors'
 
+# JSON RPC
+gem 'addressable', '~> 2.5'
+
 # Abilities
 gem 'cancancan', '~> 1.15'
-
-# Files
-gem 'paperclip', '~> 5.1'
-gem 'faker', '~> 1.6', '>= 1.6.6'
 
 # Dev
 group :development do
