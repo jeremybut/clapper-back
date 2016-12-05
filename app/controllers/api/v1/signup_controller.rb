@@ -10,7 +10,11 @@ module Api
         user = User.new(signup_params)
 
         if user.save
-          render json: user, status: 201
+          access_token = Doorkeeper::AccessToken.create!(
+            resource_owner_id: user.id
+          ).token
+
+          render json: { token: access_token, user: user }, status: 201
         else
           render json: { errors: user.errors }, status: 422
         end
@@ -19,7 +23,10 @@ module Api
       private
 
       def signup_params
-        params.permit(:email, :password)
+        params.permit(
+          :email, :password, :kodi_username, :kodi_password, :kodi_host,
+          :kodi_port
+        )
       end
     end
   end

@@ -2,18 +2,13 @@
 module Api
   module V1
     class UsersController < ApiController
-      load_and_authorize_resource except: %i(update create)
-      load_and_authorize_resource param_method: :update_params, on: :update
-      load_and_authorize_resource param_method: :create_params, on: :create
-
-      def index
-        users = User.accessible_by(current_ability).all
-        render json: { users: users }
-      end
+      load_and_authorize_resource only: :me
+      load_and_authorize_resource param_method: :permitted_params, except: :me
 
       def update
         user = User.find(params[:id])
-        if user.update(update_params)
+
+        if user.update(permitted_params)
           render json: user, status: 200
         else
           render json: { errors: user.errors }, status: 422
@@ -26,7 +21,7 @@ module Api
 
       private
 
-      def update_params
+      def permitted_params
         params.require(:user).permit(
           :email, :password, :kodi_username, :kodi_password, :kodi_host,
           :kodi_port

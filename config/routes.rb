@@ -11,7 +11,7 @@ Rails.application.routes.draw do
       resources :movies, only: :index
 
       # Users
-      resources :users, only: [:index, :update] do
+      resources :users, only: :update do
         collection do
           get '/me', to: 'users#me'
         end
