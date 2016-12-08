@@ -25,7 +25,7 @@ describe 'Authentication', reqres_section: 'Login and Sign up' do
             expect(json['access_token'].size).to eq 64
             expect(json['refresh_token'].size).to eq 64
             expect(json['token_type']).to eq 'bearer'
-            expect(json['expires_in']).to eq 86400
+            expect(json['expires_in']).to eq 86_400
             expect(json['created_at'].present?).to eq true
             expect(response.status).to eq 200
           end
@@ -56,7 +56,7 @@ describe 'Authentication', reqres_section: 'Login and Sign up' do
             expect(json['access_token'].size).to eq 64
             expect(json['refresh_token'].size).to eq 64
             expect(json['token_type']).to eq 'bearer'
-            expect(json['expires_in']).to eq 86400
+            expect(json['expires_in']).to eq 86_400
             expect(json['created_at'].present?).to eq true
             expect(response.status).to eq 200
           end
@@ -144,7 +144,7 @@ describe 'Authentication', reqres_section: 'Login and Sign up' do
         expect(json['refresh_token'].size).to eq 64
         expect(json['refresh_token'].size).not_to eq refresh_token
         expect(json['token_type']).to eq 'bearer'
-        expect(json['expires_in']).to eq 86400
+        expect(json['expires_in']).to eq 86_400
         expect(json['created_at'].present?).to eq true
         expect(response.status).to eq 200
       end

@@ -17,11 +17,9 @@ class KodiClient
     }.to_json
 
     resp = JSON.parse(http_post_request(post_body))
-    raise JSONRPCError, resp['error'] if resp['error']
+    return resp['error'] if resp['error']
     resp['result']
   end
-
-  class JSONRPCError < RuntimeError; end
 
   private
 
