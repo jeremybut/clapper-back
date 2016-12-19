@@ -5,20 +5,22 @@ module Api
       authorize_resource class: false
 
       def index
-        movies = kodi_client.request('VideoLibrary.GetMovies', 'libMovies')
+        movies = kodi_client.request(
+          'VideoLibrary.GetMovies', 'libMovies', movies_args
+        )
         render json: movies, status: 200
       end
 
       def show
         movie = kodi_client.request(
-          'VideoLibrary.GetMovieDetails', 'Video.Fields.Movie', args
+          'VideoLibrary.GetMovieDetails', 'Video.Fields.Movie', movie_args
         )
         render json: movie, status: 200
       end
 
       private
 
-      def args
+      def movie_args
         {
           movieid: params[:id].to_i,
           properties: %w(
@@ -28,6 +30,10 @@ module Api
             imdbnumber runtime set showlink streamdetails thumbnail file
           )
         }
+      end
+
+      def movies_args
+        { properties: %w(title genre director thumbnail) }
       end
     end
   end
