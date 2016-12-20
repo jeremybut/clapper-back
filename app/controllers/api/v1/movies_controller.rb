@@ -5,9 +5,13 @@ module Api
       authorize_resource class: false
 
       def index
-        movies = kodi_client.request(
-          'VideoLibrary.GetMovies', 'libMovies', movies_args
-        )
+        req = if %w(GetRecentlyAddedMovies).include?(permitted_params[:event])
+                'VideoLibrary.' + permitted_params[:event]
+              else
+                'VideoLibrary.GetMovies'
+              end
+
+        movies = kodi_client.request(req, 'libMovies', movies_args)
         render json: movies, status: 200
       end
 
@@ -34,6 +38,10 @@ module Api
 
       def movies_args
         { properties: %w(title genre director thumbnail) }
+      end
+
+      def permitted_params
+        params.permit(:event)
       end
     end
   end
