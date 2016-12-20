@@ -9,7 +9,7 @@ require 'action_view/railtie'
 
 Bundler.require(*Rails.groups)
 
-module Kovies
+module Clapper
   class Application < Rails::Application
     ActiveModelSerializers.config.adapter = :json
 

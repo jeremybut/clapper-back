@@ -5,8 +5,8 @@ default: &default
 
 development:
   <<: *default
-  database: kovies_dev
+  database: clapper_dev
 
 test:
   <<: *default
-  database: kovies_test
+  database: clapper_test
