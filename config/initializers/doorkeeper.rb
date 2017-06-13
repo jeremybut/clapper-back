@@ -7,8 +7,6 @@ Doorkeeper.configure do
 
   use_refresh_token
 
-  # This block will be called to check whether the
-  # resource owner is authenticated or not.
   resource_owner_authenticator do
     raise "Please configure doorkeeper
       resource_owner_authenticator block located in #{__FILE__}"
@@ -22,4 +20,6 @@ Doorkeeper.configure do
   end
 
   grant_flows %w(password client_credentials)
+
+  Doorkeeper::OAuth::TokenResponse.send :prepend, CustomTokenResponse
 end

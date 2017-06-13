@@ -2,7 +2,8 @@
 module Api
   module V1
     class MoviesController < ApiController
-      authorize_resource class: false
+      # authorize_resource class: false
+      skip_authorization_check
 
       def index
         req = if %w(GetRecentlyAddedMovies).include?(permitted_params[:event])
