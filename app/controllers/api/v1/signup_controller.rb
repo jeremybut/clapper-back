@@ -1,29 +1,40 @@
 # frozen_string_literal: true
+
 module Api
   module V1
     class SignupController < ApiController
       skip_before_action :doorkeeper_authorize!
       skip_before_action :authenticate_user!
-      skip_authorization_check
+      before_action :set_user
 
-      def index
+      def create
+        return errors_json(I18n.t('.user.already_exists'), 409) if @user
+
         user = User.new(signup_params)
-
         if user.save
           access_token = Doorkeeper::AccessToken.create!(
             resource_owner_id: user.id
           ).token
 
-          render json: { token: access_token, user: user }, status: 201
+          render json: {
+            access_token: access_token,
+            token_type: 'bearer',
+            email: user.email,
+            id: user.id
+          }, status: 201
         else
-          render json: { errors: user.errors }, status: 422
+          errors_json(user.errors, 422)
         end
       end
 
       private
 
+      def set_user
+        @user = User.find_by(email: signup_params[:email])
+      end
+
       def signup_params
-        params.permit(
+        params.require(:user).permit(
           :email, :password, :kodi_username, :kodi_password, :kodi_host,
           :kodi_port
         )

@@ -5,10 +5,10 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      post :signup, to: 'signup#index'
+      post :signup, to: 'signup#create'
 
       # Movies
-      resources :movies, only: [:index, :show]
+      resources :movies, only: %i[index show]
 
       # Users
       resources :users, only: :update do

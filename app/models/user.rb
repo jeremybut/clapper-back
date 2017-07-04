@@ -26,4 +26,8 @@ class User < ApplicationRecord
     kodi_host String
     kodi_port Integer
   end
+
+  def host
+    "#{kodi_host}:#{kodi_port}"
+  end
 end
